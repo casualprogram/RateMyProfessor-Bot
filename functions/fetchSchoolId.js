@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer")
 const { log } = require('console')
 const readline = require("readline")
-const delay = require("./functions/delay")
+const delay = require("./delay")
 
 
 
@@ -50,6 +50,8 @@ async function fetchSchoolId (){
 
     await delay(5000)
 
+
+    
     //Set close ads button variables
     const button = await page.$('._pendo-close-guide');
     //If there is a ad appear, click close
@@ -63,13 +65,17 @@ async function fetchSchoolId (){
         console.log('Button not found');
     }
 
+
+
+ 
     //Set the first University Name founded
-    const firstFounnd = await page.$(".SchoolCardHeader__StyledSchoolCardHeader-sc-1gq3qdv-0.bAQoPm")
+    const firstFound = await page.$('.SchoolCardHeader__StyledSchoolCardHeader-sc-1gq3qdv-0.bAQoPm')
+
     
     //If the search were successfull clicked!
-    if (firstFounnd){
+    if (firstFound){
         //Click on the first found school
-        await page.click(firstFounnd)
+        await page.click(".SchoolCardHeader__StyledSchoolCardHeader-sc-1gq3qdv-0.bAQoPm")
 
         //save the school page url
         const url = page.url();
@@ -87,18 +93,16 @@ async function fetchSchoolId (){
         
         //Print out School Name and School Id
         console.log("School founded - " + schoolName);
-        console.log("with schoolId" + schoolId);
+        console.log("with schoolId - " + schoolId);
 
         //return schoolId
         return schoolId
-        }
 
-    //If not founeded, return error
-    else {
-        return log("Error, no school founded !")
-    }
+        } else {
+          return log("Error, no school founded !")
+      }
 
-    
+
   }
 
-fetchSchoolId()
+  module.exports = fetchSchoolId;
