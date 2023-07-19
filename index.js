@@ -5,13 +5,6 @@ const delay = require("./functions/delay")
 const fetchSchoolId = require("./functions/fetchSchoolId")
 
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-  
-
-
 async function start(){
     fetchSchoolId()
 }
