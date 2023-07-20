@@ -39,7 +39,7 @@ async function fetchSchoolId (){
     
     //open browser
     const browser = await puppeteer.launch({
-        headless: false
+        headless: true
     })
 
     const page = await browser.newPage();
@@ -87,19 +87,23 @@ async function fetchSchoolId (){
 
         //This function help to save school Name title appear on the page
         const schoolName = await page.evaluate(() => {
-            const spanElement = document.querySelector('.HeaderDescription__StyledTitleName-sc-1lt205f-1.eNxccF'); // Replace '.your-class-name' with the actual class name of the <span> element
+            const spanElement = document.querySelector('.HeaderDescription__StyledTitleName-sc-1lt205f-1.eNxccF'); // Replace with the actual class name of the <span> element
             return spanElement.textContent;
         });
         
         //Print out School Name and School Id
         console.log("School founded - " + schoolName);
-        console.log("with schoolId - " + schoolId);
+        console.log("schoolId - " + schoolId);
 
         //return schoolId
+        await browser.close();
         return schoolId
 
+
         } else {
-          return log("Error, no school founded !")
+        await browser.close();
+        return log("Error, no school founded !")
+
       }
 
 
