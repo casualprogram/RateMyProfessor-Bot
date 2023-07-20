@@ -1,7 +1,9 @@
 const cheerio = require("cheerio")
 const request = require("request")
 
-async function analysisProfessor(link) {
+async function analysisProfessor(professorId) {
+    const link = "https://www.ratemyprofessors.com/professor/" + professorId
+    console.log("URL at - " + link)
     request(link, (error, response, html) => {
         if (!error && response.statusCode == 200) {
             const $ = cheerio.load(html);
@@ -89,3 +91,5 @@ COMMENT: ${commentOfReview[2]}
         }
     })
 }
+
+module.exports = analysisProfessor
