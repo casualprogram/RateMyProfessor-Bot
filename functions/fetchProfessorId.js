@@ -4,30 +4,10 @@ const readline = require("readline")
 const delay = require("./delay")
 
 
-//Read user input from data
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-  
 
-//Fecth rateMyProfessors Url from user input
-async function professorSearch(schoolId){
-    return new Promise ((resolve, reject) => {
-        rl.question("Enter professor Full Name : ", (professorName) => {
-            const trimmedName = professorName.trim();
-            const adjustedProfessorName = trimmedName.replace(/ /g, '%20');
 
-            const professorURL = "https://www.ratemyprofessors.com/search/professors/" + schoolId + "?q=" + adjustedProfessorName;
-
-            log (professorURL)
-            resolve(professorURL);
-        })
-    });
-}
-
-async function fetchProfessorId(schoolId) {
-    const proffesorSearchUrl = await professorSearch(schoolId);
+async function fetchProfessorId(professorURL, schoolId, rl) {
+    const proffesorSearchUrl = professorURL;
 
     const browser = await puppeteer.launch({
         headless:true
@@ -76,7 +56,9 @@ async function fetchProfessorId(schoolId) {
 
         log("Professor Found - " + ProfessorName + "\n professor ID - " + professorId)
         await browser.close();
-        return professorId
+        return professorId;
+        
+        
     } else {
         await browser.close();
         return log("Error, no Professor found.")
