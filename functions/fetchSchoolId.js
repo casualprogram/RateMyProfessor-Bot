@@ -6,10 +6,10 @@ const delay = require("./delay")
 
 
 //Read user input from data
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
+// const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+//   });
   
 
 //Fecth rateMyProfessors Url from user input
