@@ -7,37 +7,12 @@ const request = require("request")
 
 
 
-//Read user input from data
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-  
-
-//Fecth rateMyProfessors Url from user input
-async function fetchSchoolUrl() {
-    //Promise function work with async order.
-    return new Promise((resolve, reject) => {
-        //Prompt user input for University Name
-      rl.question('What is your University Name? ', (schoolName) => {
-        //Cut down all the spaces and replace with %20.
-        const trimmedName = schoolName.trim();
-        const adjustedSchoolName = trimmedName.replace(/ /g, '%20');
-        //set the right schoolUrl with right University search input.
-        let schoolUrl = "https://www.ratemyprofessors.com/search/schools?q=" + adjustedSchoolName;
-        
-        //return the full schoolUrl
-        resolve(schoolUrl);
-      });
-    });
-  }
-
 
   
 //Function to fetch schoolId
-async function fetchCampusId (){
+async function fetchCampusId (schoolUrl){
     //run the fetSchoolUrl function and save the right Url into schooUrl
-    let schoolUrl = await fetchSchoolUrl()
+    // let schoolUrl = await fetchSchoolUrl()
 
     request(schoolUrl, (error, response, html) => {
         if (!error && response.statusCode == 200) {
