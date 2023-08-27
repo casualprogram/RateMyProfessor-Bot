@@ -5,13 +5,13 @@ import { getAnalytics } from "firebase/analytics";
 import { getFirestore} from "firebase/firestore"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCTVnpRZASsDQX3XHG9229hOrsueUy2nbI",
+    apiKey: "",
     authDomain: "schoolaio.firebaseapp.com",
     projectId: "schoolaio",
     storageBucket: "schoolaio.appspot.com",
-    messagingSenderId: "789421022967",
-    appId: "1:789421022967:web:a6235b27f02e23f129fdf2",
-    measurementId: "G-9MRZQ8C35Y"
+    messagingSenderId: "",
+    appId: "",
+    measurementId: ""
 };
 
 // Initialize Firebase
